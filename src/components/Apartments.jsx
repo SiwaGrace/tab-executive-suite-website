@@ -8,6 +8,7 @@ import {
   WashingMachine,
   Armchair,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Apartments = () => {
   const apartments = [
@@ -70,7 +71,11 @@ const Apartments = () => {
 
         <div className="space-y-16">
           {apartments.map((apartment, index) => (
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: true }}
               key={index}
               className={`grid md:grid-cols-2 gap-8 items-center ${
                 index % 2 === 1 ? "md:flex-row-reverse" : ""
@@ -96,7 +101,7 @@ const Apartments = () => {
                 <div className="grid grid-cols-1 gap-3">
                   {apartment.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-3">
-                      <div className="bg-gold-100 p-2 rounded-lg flex-shrink-0">
+                      <div className="bg-gold-100 p-2 rounded-lg shrink-0">
                         <feature.icon className="text-gold-600" size={20} />
                       </div>
                       <span className="text-gray-700">{feature.text}</span>
@@ -104,7 +109,7 @@ const Apartments = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

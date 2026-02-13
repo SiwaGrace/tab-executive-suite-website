@@ -1,20 +1,20 @@
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { useState } from 'react';
+import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { useState } from "react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -22,18 +22,24 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-gold-50">
+    <section
+      id="contact"
+      className="py-20 bg-linear-to-br from-gray-50 to-gold-50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to book your stay or have questions? Get in touch with us today.
+            Ready to book your stay or have questions? Get in touch with us
+            today.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Get In Touch</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              Get In Touch
+            </h3>
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="bg-gold-100 p-3 rounded-lg">
@@ -41,7 +47,9 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">Address</h4>
-                  <p className="text-gray-600">Dansoman-Asoredenho, Accra, Ghana</p>
+                  <p className="text-gray-600">
+                    Dansoman-Asoredenho, Accra, Ghana
+                  </p>
                 </div>
               </div>
 
@@ -69,16 +77,24 @@ const Contact = () => {
             <div className="mt-8 bg-white rounded-xl p-6 shadow-lg">
               <h4 className="font-bold text-gray-900 mb-4">Guest Experience</h4>
               <p className="text-gray-700 leading-relaxed">
-                At Tab Executive Suite, your comfort comes first. We ensure every stay is safe, comfortable, and memorable. From check-in to check-out, our team is committed to delivering exceptional service.
+                At Tab Executive Suite, your comfort comes first. We ensure
+                every stay is safe, comfortable, and memorable. From check-in to
+                check-out, our team is committed to delivering exceptional
+                service.
               </p>
             </div>
           </div>
 
           <div className="bg-white rounded-xl p-8 shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              Send Us a Message
+            </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Full Name
                 </label>
                 <input
@@ -94,7 +110,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Email Address
                 </label>
                 <input
@@ -110,7 +129,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Phone Number
                 </label>
                 <input
@@ -125,7 +147,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Message
                 </label>
                 <textarea

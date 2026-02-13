@@ -1,17 +1,20 @@
-import { ArrowRight, MessageSquare } from 'lucide-react';
+import { ArrowRight, MessageSquare } from "lucide-react";
 
 const Hero = () => {
   const scrollToContact = () => {
-    const element = document.getElementById('contact');
+    const element = document.getElementById("contact");
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <section id="home" className="relative pt-20 min-h-screen flex items-center">
+    <section
+      id="home"
+      className="relative pt-20 min-h-screen flex items-center"
+    >
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-800/80 z-10"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-gray-900/90 to-gray-800/80 z-10"></div>
         <img
           src="https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=1920"
           alt="Luxury apartment"
@@ -25,7 +28,9 @@ const Hero = () => {
             Luxury Two-Bedroom Executive Apartments in Accra
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-            Experience refined comfort and modern living at Tab Executive Suite — perfectly designed for business travelers, families, and holiday makers.
+            Experience refined comfort and modern living at Tab Executive Suite
+            — perfectly designed for business travelers, families, and holiday
+            makers.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <button
@@ -46,7 +51,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-20"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-white to-transparent z-20"></div>
     </section>
   );
 };

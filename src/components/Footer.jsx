@@ -1,10 +1,10 @@
-import { Facebook, Instagram, Twitter, Mail, Phone } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -15,16 +15,26 @@ const Footer = () => {
           <div className="md:col-span-2">
             <h3 className="text-2xl font-bold mb-4">TAB EXECUTIVE SUITE</h3>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              Premium furnished apartments in Accra, Ghana. Experience luxury living with world-class amenities and exceptional service.
+              Premium furnished apartments in Accra, Ghana. Experience luxury
+              living with world-class amenities and exceptional service.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="bg-gray-800 hover:bg-gold-600 p-2 rounded-lg transition-colors">
+              <a
+                href="#"
+                className="bg-gray-800 hover:bg-gold-600 p-2 rounded-lg transition-colors"
+              >
                 <Facebook size={20} />
               </a>
-              <a href="#" className="bg-gray-800 hover:bg-gold-600 p-2 rounded-lg transition-colors">
+              <a
+                href="#"
+                className="bg-gray-800 hover:bg-gold-600 p-2 rounded-lg transition-colors"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="#" className="bg-gray-800 hover:bg-gold-600 p-2 rounded-lg transition-colors">
+              <a
+                href="#"
+                className="bg-gray-800 hover:bg-gold-600 p-2 rounded-lg transition-colors"
+              >
                 <Twitter size={20} />
               </a>
             </div>
@@ -35,7 +45,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <button
-                  onClick={() => scrollToSection('home')}
+                  onClick={() => scrollToSection("home")}
                   className="text-gray-400 hover:text-gold-400 transition-colors"
                 >
                   Home
@@ -43,7 +53,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('about')}
+                  onClick={() => scrollToSection("about")}
                   className="text-gray-400 hover:text-gold-400 transition-colors"
                 >
                   About Us
@@ -51,7 +61,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('apartments')}
+                  onClick={() => scrollToSection("apartments")}
                   className="text-gray-400 hover:text-gold-400 transition-colors"
                 >
                   Our Apartments
@@ -59,7 +69,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('amenities')}
+                  onClick={() => scrollToSection("amenities")}
                   className="text-gray-400 hover:text-gold-400 transition-colors"
                 >
                   Amenities
@@ -67,7 +77,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('gallery')}
+                  onClick={() => scrollToSection("gallery")}
                   className="text-gray-400 hover:text-gold-400 transition-colors"
                 >
                   Gallery
@@ -92,7 +102,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Tab Executive Suite. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Tab Executive Suite. All rights
+            reserved.
+          </p>
         </div>
       </div>
     </footer>

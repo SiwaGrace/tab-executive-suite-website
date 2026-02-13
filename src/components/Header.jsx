@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,38 +9,40 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
     }
   };
 
   const menuItems = [
-    { label: 'Home', id: 'home' },
-    { label: 'About Us', id: 'about' },
-    { label: 'Our Apartments', id: 'apartments' },
-    { label: 'Amenities', id: 'amenities' },
-    { label: 'Gallery', id: 'gallery' },
-    { label: 'Location', id: 'location' },
-    { label: 'Contact', id: 'contact' },
+    { label: "Home", id: "home" },
+    { label: "About Us", id: "about" },
+    { label: "Our Apartments", id: "apartments" },
+    { label: "Amenities", id: "amenities" },
+    { label: "Gallery", id: "gallery" },
+    { label: "Location", id: "location" },
+    { label: "Contact", id: "contact" },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
+        isScrolled ? "bg-white shadow-lg" : "bg-white/95 backdrop-blur-sm"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-gold-700">TAB EXECUTIVE SUITE</h1>
+          <div className="shrink-0">
+            <h1 className="text-2xl font-bold text-gold-700">
+              TAB EXECUTIVE SUITE
+            </h1>
           </div>
 
           <nav className="hidden md:flex space-x-8">
