@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Header = () => {
+  const MotionButton = motion.button;
+  const MotionDiv = motion.div;
+  const MotionNav = motion.nav;
+  const MotionSpan = motion.span;
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -57,30 +62,68 @@ const Header = () => {
             ))}
           </nav>
 
-          <button
+          <MotionButton
             className="md:hidden text-gray-700"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            whileTap={{ scale: 0.92 }}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <AnimatePresence mode="wait" initial={false}>
+              <MotionSpan
+                key={isMobileMenuOpen ? "close" : "open"}
+                initial={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                exit={{ rotate: 90, opacity: 0, scale: 0.7 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="block"
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </MotionSpan>
+            </AnimatePresence>
+          </MotionButton>
         </div>
       </div>
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t">
-          <nav className="px-4 py-4 space-y-3">
-            {menuItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left text-gray-700 hover:text-gold-600 transition-colors font-medium py-2"
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {isMobileMenuOpen && (
+          <MotionDiv
+            className="md:hidden bg-white border-t overflow-hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: "easeInOut" }}
+          >
+            <MotionNav
+              className="px-4 py-4 space-y-3"
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.05, delayChildren: 0.06 },
+                },
+              }}
+            >
+              {menuItems.map((item) => (
+                <MotionButton
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="block w-full text-left text-gray-700 hover:text-gold-600 transition-colors font-medium py-2"
+                  variants={{
+                    hidden: { y: -8, opacity: 0 },
+                    visible: { y: 0, opacity: 1 },
+                  }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                >
+                  {item.label}
+                </MotionButton>
+              ))}
+            </MotionNav>
+          </MotionDiv>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
