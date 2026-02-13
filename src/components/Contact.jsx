@@ -24,30 +24,13 @@ const Contact = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+      const response = await fetch("../api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "api-key": import.meta.env.VITE_BREVO_API_KEY,
         },
-        body: JSON.stringify({
-          sender: {
-            name: formData.name,
-            email: import.meta.env.VITE_BREVO_SENDER_EMAIL,
-          },
-          to: [{ email: import.meta.env.VITE_BREVO_RECIPIENT_EMAIL }],
-          replyTo: { email: formData.email },
-          subject: `New enquiry from ${formData.name}`,
-          htmlContent: `
-            <h3>New Contact Form Submission</h3>
-            <p><strong>Name:</strong> ${formData.name}</p>
-            <p><strong>Email:</strong> ${formData.email}</p>
-            <p><strong>Phone:</strong> ${formData.phone || "Not provided"}</p>
-            <p><strong>Message:</strong><br/>${formData.message}</p>
-          `,
-        }),
+        body: JSON.stringify(formData),
       });
-
       if (response.ok) {
         toast.success("Message sent! We'll get back to you shortly.", {
           duration: 5000,
@@ -55,8 +38,6 @@ const Contact = () => {
         });
         setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
-        const errorData = await response.json();
-        console.log("Brevo error:", errorData);
         throw new Error("Failed to send");
       }
     } catch (error) {
