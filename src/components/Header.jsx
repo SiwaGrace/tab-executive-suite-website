@@ -21,9 +21,18 @@ const Header = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
+      const headerOffset = 96;
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      const scrollTarget = Math.max(elementTop - headerOffset, 0);
+      window.scrollTo({ top: scrollTarget, behavior: "smooth" });
     }
+  };
+
+  const handleMobileNavClick = (id) => {
+    setIsMobileMenuOpen(false);
+    window.setTimeout(() => {
+      scrollToSection(id);
+    }, 300);
   };
 
   const menuItems = [
@@ -53,6 +62,7 @@ const Header = () => {
           <nav className="hidden md:flex space-x-8">
             {menuItems.map((item) => (
               <button
+                type="button"
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className="text-gray-700 hover:text-gold-600 transition-colors font-medium"
@@ -108,8 +118,9 @@ const Header = () => {
             >
               {menuItems.map((item) => (
                 <MotionButton
+                  type="button"
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleMobileNavClick(item.id)}
                   className="block w-full text-left text-gray-700 hover:text-gold-600 transition-colors font-medium py-2"
                   variants={{
                     hidden: { y: -8, opacity: 0 },
