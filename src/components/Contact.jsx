@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,10 +10,7 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -21,11 +19,62 @@ const Contact = () => {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": import.meta.env.VITE_BREVO_API_KEY,
+        },
+        body: JSON.stringify({
+          sender: {
+            name: formData.name,
+            email: import.meta.env.VITE_BREVO_SENDER_EMAIL,
+          },
+          to: [{ email: import.meta.env.VITE_BREVO_RECIPIENT_EMAIL }],
+          replyTo: { email: formData.email },
+          subject: `New enquiry from ${formData.name}`,
+          htmlContent: `
+            <h3>New Contact Form Submission</h3>
+            <p><strong>Name:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Phone:</strong> ${formData.phone || "Not provided"}</p>
+            <p><strong>Message:</strong><br/>${formData.message}</p>
+          `,
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Message sent! We'll get back to you shortly.", {
+          duration: 5000,
+          position: "top-right",
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        const errorData = await response.json();
+        console.log("Brevo error:", errorData);
+        throw new Error("Failed to send");
+      }
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.", {
+        duration: 5000,
+        position: "top-right",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section
       id="contact"
       className="py-20 bg-linear-to-br from-gray-50 to-gold-50"
     >
+      <Toaster />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
@@ -162,15 +211,16 @@ const Contact = () => {
                   rows={4}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-500 focus:border-transparent outline-none transition resize-none"
                   placeholder="Tell us about your booking requirements..."
-                ></textarea>
+                />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-gold-600 hover:bg-gold-700 text-white px-6 py-4 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-lg"
+                disabled={isLoading}
+                className="w-full bg-gold-600 hover:bg-gold-700 text-white px-6 py-4 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-lg disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer"
               >
-                Send Message
-                <Send size={20} />
+                {isLoading ? "Sending..." : "Send Message"}
+                {!isLoading && <Send size={20} />}
               </button>
             </form>
           </div>
