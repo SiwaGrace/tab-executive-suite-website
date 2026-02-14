@@ -1,4 +1,5 @@
 import { Heart, Shield, Home, Users } from "lucide-react";
+import nightExterior from "../assets/images/exterior-building-facade-03.jpeg";
 
 const About = () => {
   return (
@@ -58,8 +59,8 @@ const About = () => {
           </div>
           <div className="relative h-96">
             <img
-              src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
-              alt="Modern living room"
+              src={nightExterior}
+              alt="Night exterior of the building"
               className="w-full h-full object-cover rounded-2xl shadow-2xl"
             />
           </div>

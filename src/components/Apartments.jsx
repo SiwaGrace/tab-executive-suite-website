@@ -79,7 +79,7 @@ const Apartments = () => {
   const [activeSlides, setActiveSlides] = useState(apartments.map(() => 0));
   const [pausedSlides, setPausedSlides] = useState(apartments.map(() => false));
   const [isPageVisible, setIsPageVisible] = useState(
-    typeof document === "undefined" ? true : !document.hidden
+    typeof document === "undefined" ? true : !document.hidden,
   );
 
   useEffect(() => {
@@ -95,12 +95,11 @@ const Apartments = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setActiveSlides((previous) =>
-        previous.map(
-          (slideIndex, apartmentIndex) =>
-            pausedSlides[apartmentIndex] || !isPageVisible
-              ? slideIndex
-              : (slideIndex + 1) % apartments[apartmentIndex].images.length
-        )
+        previous.map((slideIndex, apartmentIndex) =>
+          pausedSlides[apartmentIndex] || !isPageVisible
+            ? slideIndex
+            : (slideIndex + 1) % apartments[apartmentIndex].images.length,
+        ),
       );
     }, 4500);
 
@@ -180,7 +179,9 @@ const Apartments = () => {
                           <button
                             type="button"
                             key={dotIndex}
-                            onClick={() => changeSlide(index, dotIndex - activeSlides[index])}
+                            onClick={() =>
+                              changeSlide(index, dotIndex - activeSlides[index])
+                            }
                             aria-label={`Go to image ${dotIndex + 1}`}
                             className={`h-2.5 rounded-full transition-all cursor-pointer ${
                               dotIndex === activeSlides[index]
@@ -244,4 +245,3 @@ const Apartments = () => {
 };
 
 export default Apartments;
-

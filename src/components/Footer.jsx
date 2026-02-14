@@ -20,22 +20,18 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61584276031737&rdid=iuA9yGDBUTZIAfNr&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Bt23PVfvq%2F#"
                 className="bg-gray-800 hover:bg-gold-600 p-2 rounded-lg transition-colors"
+                target="_blank"
               >
                 <Facebook size={20} />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/tabexecutivesuite"
                 className="bg-gray-800 hover:bg-gold-600 p-2 rounded-lg transition-colors"
+                target="_blank"
               >
                 <Instagram size={20} />
-              </a>
-              <a
-                href="#"
-                className="bg-gray-800 hover:bg-gold-600 p-2 rounded-lg transition-colors"
-              >
-                <Twitter size={20} />
               </a>
             </div>
           </div>
