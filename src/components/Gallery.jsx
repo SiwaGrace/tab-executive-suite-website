@@ -85,6 +85,11 @@ const Gallery = () => {
   }, []);
 
   useEffect(() => {
+    const activeItem = images[activeIndex];
+    if (isVideoAsset(activeItem.src)) {
+      return undefined;
+    }
+
     const intervalId = setInterval(() => {
       if (!isPaused && isPageVisible) {
         setActiveIndex((previous) => (previous + 1) % images.length);
@@ -92,7 +97,7 @@ const Gallery = () => {
     }, 4200);
 
     return () => clearInterval(intervalId);
-  }, [isPaused, isPageVisible]);
+  }, [activeIndex, isPaused, isPageVisible]);
 
   const changeSlide = (step) => {
     setActiveIndex(
@@ -126,8 +131,8 @@ const Gallery = () => {
                   src={images[activeIndex].src}
                   autoPlay
                   muted
-                  loop
                   playsInline
+                  onEnded={() => changeSlide(1)}
                   initial={{ opacity: 0, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.985 }}
