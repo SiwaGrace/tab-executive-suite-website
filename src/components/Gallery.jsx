@@ -2,14 +2,19 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const imageModules = import.meta.glob("../assets/images/*.jpeg", {
-  eager: true,
-  import: "default",
-});
+const imageModules = import.meta.glob(
+  "../assets/images/*.{jpeg,jpg,png,avif,mp4,webm,mov}",
+  {
+    eager: true,
+    import: "default",
+  },
+);
 
 const getImage = (name) => imageModules[`../assets/images/${name}`];
+const isVideoAsset = (src = "") => /\.(mp4|webm|mov)$/i.test(src);
 
 const images = [
+  { src: getImage("tabexecutive.mp4"), alt: "Apartment tour video" },
   {
     src: getImage("exterior-building-facade-02.jpeg"),
     alt: "Building facade",
@@ -62,6 +67,7 @@ const images = [
 
 const Gallery = () => {
   const MotionImg = motion.img;
+  const MotionVideo = motion.video;
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isPageVisible, setIsPageVisible] = useState(
@@ -114,16 +120,32 @@ const Gallery = () => {
             onTouchEnd={() => setIsPaused(false)}
           >
             <AnimatePresence mode="wait">
-              <MotionImg
-                key={images[activeIndex].src}
-                src={images[activeIndex].src}
-                alt={images[activeIndex].alt}
-                initial={{ opacity: 0, scale: 1.03 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.985 }}
-                transition={{ duration: 0.65, ease: "easeInOut" }}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
+              {isVideoAsset(images[activeIndex].src) ? (
+                <MotionVideo
+                  key={images[activeIndex].src}
+                  src={images[activeIndex].src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  initial={{ opacity: 0, scale: 1.03 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.985 }}
+                  transition={{ duration: 0.65, ease: "easeInOut" }}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                <MotionImg
+                  key={images[activeIndex].src}
+                  src={images[activeIndex].src}
+                  alt={images[activeIndex].alt}
+                  initial={{ opacity: 0, scale: 1.03 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.985 }}
+                  transition={{ duration: 0.65, ease: "easeInOut" }}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              )}
             </AnimatePresence>
 
             <div className="absolute inset-x-0 bottom-0 p-4 bg-linear-to-t from-gray-900/75 to-transparent">
@@ -184,11 +206,22 @@ const Gallery = () => {
                     : "hover:shadow-lg"
                 }`}
               >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
+                {isVideoAsset(image.src) ? (
+                  <video
+                    src={image.src}
+                    muted
+                    autoPlay
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors" />
               </button>
             ))}

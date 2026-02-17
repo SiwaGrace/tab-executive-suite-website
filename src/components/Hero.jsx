@@ -1,5 +1,5 @@
 import { ArrowRight, MessageSquare } from "lucide-react";
-import heroVideo from "../assets/tabexecutive.mp4";
+import heroVideo from "../assets/images/tabexecutive.mp4";
 
 const Hero = () => {
   const scrollToContact = () => {
