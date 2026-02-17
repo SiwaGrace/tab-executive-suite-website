@@ -1,4 +1,5 @@
 import { ArrowRight, MessageSquare } from "lucide-react";
+import heroVideo from "../assets/tabexecutive.mp4";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -14,17 +15,21 @@ const Hero = () => {
       className="relative pt-20 min-h-screen flex items-center"
     >
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-linear-to-r from-gray-900/90 to-gray-800/80 z-10"></div>
-        <img
-          src="https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=1920"
-          alt="Luxury apartment"
+        <div className="absolute inset-0 bg-linear-to-r from-gray-950/55 via-gray-900/35 to-gray-950/55 z-10"></div>
+        <video
           className="w-full h-full object-cover"
-        />
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
       </div>
 
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+        <div className="max-w-3xl rounded-2xl bg-black/25 backdrop-blur-[2px] border border-white/15 p-6 md:p-8">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             Luxury Two-Bedroom Executive Apartments in Accra
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
