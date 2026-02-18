@@ -54,7 +54,7 @@ const apartments = [
     ],
     apartmentDetails: [
       {
-        name: "Apartment room 1",
+        name: "Bedroom One",
         link: "https://www.airbnb.co.uk/rooms/1612314705936953493?guests=1&adults=1&s=67&unique_share_id=f660eaa0-9970-49cc-b915-9db7cfba5b02&source_impression_id=p3_1771089000_P3sSROjH_3dzL2uO",
         images: [
           getImage("interior-bedroom-01.jpeg"),
@@ -63,7 +63,7 @@ const apartments = [
         ],
       },
       {
-        name: "Apartment room 2",
+        name: "Bedroom Two",
         link: "https://www.airbnb.co.uk/rooms/1612314705936953493?guests=1&adults=1&s=67&unique_share_id=f660eaa0-9970-49cc-b915-9db7cfba5b02&source_impression_id=p3_1771089000_P3sSROjH_3dzL2uO",
         images: [
           getImage("apartment_1_0.jpeg"),
@@ -96,8 +96,8 @@ const apartments = [
     ],
     apartmentDetails: [
       {
-        name: "Apartment 1",
-        link: "https://www.airbnb.co.uk/rooms/1612382587579178526?guests=1&adults=1&s=67&unique_share_id=019cfc6f-5b14-4618-97b6-88a21e206e1e&source_impression_id=p3_1771089031_P3OQTa9rZQucNV1v&modal=PHOTO_TOUR_SCROLLABLE",
+        name: "Bedroom One",
+        link: "https://www.airbnb.co.uk/rooms/1612382587579178526?guests=1&adults=1&s=67&unique_share_id=019cfc6f-5b14-4618-97b6-88a21e206e1e&source_impression_id=p3_1771089031_P3OQTa9rZQucNV1v",
         images: [
           getImage("apartment_2_room_0.jpeg"),
           getImage("apartment_2_room_1.jpeg"),
@@ -105,12 +105,21 @@ const apartments = [
         ],
       },
       {
-        name: "Apartment 2",
-        link: "https://www.airbnb.co.uk/rooms/1612382587579178526?guests=1&adults=1&s=67&unique_share_id=019cfc6f-5b14-4618-97b6-88a21e206e1e&source_impression_id=p3_1771089031_P3OQTa9rZQucNV1v&modal=PHOTO_TOUR_SCROLLABLE",
+        name: "Bedroom Two",
+        link: "https://www.airbnb.co.uk/rooms/1612382587579178526?guests=1&adults=1&s=67&unique_share_id=019cfc6f-5b14-4618-97b6-88a21e206e1e&source_impression_id=p3_1771089031_P3OQTa9rZQucNV1v",
         images: [
           getImage("apartment_3_room_0.avif"),
           getImage("apartment_3_room_1.avif"),
           getImage("apartment_3_room_2.avif"),
+        ],
+      },
+      {
+        name: "Bedroom Three",
+        link: "https://www.airbnb.co.uk/rooms/1612362685315528771?guests=1&adults=1&s=67&unique_share_id=505bbeeb-a276-44ee-ae8a-18f174852dab&source_impression_id=p3_1771402955_P3Lk0CgzmO7tnO6s",
+        images: [
+          getImage("apartment_4_room_3.jpeg"),
+          getImage("apartment_4_room_1.jpeg"),
+          getImage("apartment_4_room_2.jpeg"),
         ],
       },
     ],
