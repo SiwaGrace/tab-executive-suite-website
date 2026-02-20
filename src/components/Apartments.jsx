@@ -137,6 +137,14 @@ const apartments = [
               getImage("apartment_4_room_2.jpeg"),
             ],
           },
+          {
+            name: "Bedroom Two",
+            images: [
+              getImage("apartment_2_room_0.jpeg"),
+              getImage("apartment_2_room_1.jpeg"),
+              getImage("apartment_2_room_3.avif"),
+            ],
+          },
         ],
       },
       {
