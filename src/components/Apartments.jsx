@@ -54,23 +54,53 @@ const apartments = [
     ],
     apartmentDetails: [
       {
-        name: "Bedroom One",
+        name: "Apartment One",
         link: "https://www.airbnb.co.uk/rooms/1612314705936953493?guests=1&adults=1&s=67&unique_share_id=f660eaa0-9970-49cc-b915-9db7cfba5b02&source_impression_id=p3_1771089000_P3sSROjH_3dzL2uO",
-        images: [
-          getImage("interior-bedroom-01.jpeg"),
-          getImage("interior-bedroom-02.jpeg"),
-          getImage("interior-bedroom-03.jpeg"),
+        rooms: [
+          {
+            name: "Bedroom One",
+            images: [
+              getImage("interior-bedroom-01.jpeg"),
+              getImage("interior-bedroom-02.jpeg"),
+              getImage("interior-bedroom-03.jpeg"),
+            ],
+          },
+          {
+            name: "Bedroom Two",
+            images: [
+              getImage("apartment_1_0.jpeg"),
+              getImage("apartment_1_1.jpeg"),
+              getImage("apartment_1_2.jpeg"),
+            ],
+          },
         ],
       },
       {
-        name: "Bedroom Two",
-        link: "https://www.airbnb.co.uk/rooms/1612314705936953493?guests=1&adults=1&s=67&unique_share_id=f660eaa0-9970-49cc-b915-9db7cfba5b02&source_impression_id=p3_1771089000_P3sSROjH_3dzL2uO",
-        images: [
-          getImage("apartment_1_0.jpeg"),
-          getImage("apartment_1_1.jpeg"),
-          getImage("apartment_1_2.jpeg"),
+        name: "Apartment One",
+        link: "https://www.airbnb.co.uk/rooms/1612382587579178526?guests=1&adults=1&s=67&unique_share_id=019cfc6f-5b14-4618-97b6-88a21e206e1e&source_impression_id=p3_1771089031_P3OQTa9rZQucNV1v",
+        rooms: [
+          {
+            name: "Bedroom One",
+            images: [
+              getImage("apartment_2_room_0.jpeg"),
+              getImage("apartment_2_room_1.jpeg"),
+              getImage("apartment_2_room_3.avif"),
+            ],
+          },
+          {
+            name: "Bedroom Two",
+            images: [
+              getImage("apartment_3_room_0.avif"),
+              getImage("apartment_3_room_1.avif"),
+              getImage("apartment_3_room_2.avif"),
+            ],
+          },
         ],
       },
+      // {
+      //   name: "Apartment Two",
+      //   comingSoon: true,
+      // },
     ],
   },
   {
@@ -96,30 +126,39 @@ const apartments = [
     ],
     apartmentDetails: [
       {
-        name: "Bedroom One",
-        link: "https://www.airbnb.co.uk/rooms/1612382587579178526?guests=1&adults=1&s=67&unique_share_id=019cfc6f-5b14-4618-97b6-88a21e206e1e&source_impression_id=p3_1771089031_P3OQTa9rZQucNV1v",
-        images: [
-          getImage("apartment_2_room_0.jpeg"),
-          getImage("apartment_2_room_1.jpeg"),
-          getImage("apartment_2_room_3.avif"),
-        ],
-      },
-      {
-        name: "Bedroom Two",
-        link: "https://www.airbnb.co.uk/rooms/1612382587579178526?guests=1&adults=1&s=67&unique_share_id=019cfc6f-5b14-4618-97b6-88a21e206e1e&source_impression_id=p3_1771089031_P3OQTa9rZQucNV1v",
-        images: [
-          getImage("apartment_3_room_0.avif"),
-          getImage("apartment_3_room_1.avif"),
-          getImage("apartment_3_room_2.avif"),
-        ],
-      },
-      {
-        name: "Bedroom Three",
+        name: "Apartment One",
         link: "https://www.airbnb.co.uk/rooms/1612362685315528771?guests=1&adults=1&s=67&unique_share_id=505bbeeb-a276-44ee-ae8a-18f174852dab&source_impression_id=p3_1771402955_P3Lk0CgzmO7tnO6s",
-        images: [
-          getImage("apartment_4_room_3.jpeg"),
-          getImage("apartment_4_room_1.jpeg"),
-          getImage("apartment_4_room_2.jpeg"),
+        rooms: [
+          {
+            name: "Bedroom One",
+            images: [
+              getImage("apartment_4_room_3.jpeg"),
+              getImage("apartment_4_room_1.jpeg"),
+              getImage("apartment_4_room_2.jpeg"),
+            ],
+          },
+        ],
+      },
+      {
+        name: "Apartment Two",
+        link: "https://www.airbnb.co.uk/rooms/1612382587579178526?guests=1&adults=1&s=67&unique_share_id=019cfc6f-5b14-4618-97b6-88a21e206e1e&source_impression_id=p3_1771089031_P3OQTa9rZQucNV1v",
+        rooms: [
+          {
+            name: "Bedroom One",
+            images: [
+              getImage("apartment_2_room_0.jpeg"),
+              getImage("apartment_2_room_1.jpeg"),
+              getImage("apartment_2_room_3.avif"),
+            ],
+          },
+          {
+            name: "Bedroom Two",
+            images: [
+              getImage("apartment_3_room_0.avif"),
+              getImage("apartment_3_room_1.avif"),
+              getImage("apartment_3_room_2.avif"),
+            ],
+          },
         ],
       },
     ],
@@ -346,30 +385,62 @@ const Apartments = () => {
                               </h4>
                             </div>
 
-                            <div className="grid grid-cols-3 gap-2 mb-4">
-                              {unit.images
-                                .slice(0, 3)
-                                .map((image, imageIndex) => (
-                                  <img
-                                    key={`${unit.name}-${imageIndex}`}
-                                    src={image}
-                                    alt={`${apartment.title} ${unit.name} photo ${
-                                      imageIndex + 1
-                                    }`}
-                                    className="w-full h-20 sm:h-24 object-cover rounded-lg"
-                                  />
+                            {unit.rooms ? (
+                              <div className="space-y-4 mb-4">
+                                {unit.rooms.map((room) => (
+                                  <div key={`${unit.name}-${room.name}`}>
+                                    <p className="text-sm font-semibold text-gray-700 mb-2">
+                                      {room.name}
+                                    </p>
+                                    <div className="grid grid-cols-3 gap-2">
+                                      {room.images
+                                        .slice(0, 3)
+                                        .map((image, imageIndex) => (
+                                          <img
+                                            key={`${room.name}-${imageIndex}`}
+                                            src={image}
+                                            alt={`${apartment.title} ${room.name} photo ${
+                                              imageIndex + 1
+                                            }`}
+                                            className="w-full h-20 sm:h-24 object-cover rounded-lg"
+                                          />
+                                        ))}
+                                    </div>
+                                  </div>
                                 ))}
-                            </div>
+                              </div>
+                            ) : unit.images ? (
+                              <div className="grid grid-cols-3 gap-2 mb-4">
+                                {unit.images
+                                  .slice(0, 3)
+                                  .map((image, imageIndex) => (
+                                    <img
+                                      key={`${unit.name}-${imageIndex}`}
+                                      src={image}
+                                      alt={`${apartment.title} ${unit.name} photo ${
+                                        imageIndex + 1
+                                      }`}
+                                      className="w-full h-20 sm:h-24 object-cover rounded-lg"
+                                    />
+                                  ))}
+                              </div>
+                            ) : null}
 
-                            <a
-                              href={unit.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 text-gold-700 hover:text-gold-800 font-semibold"
-                            >
-                              <LinkIcon size={16} />
-                              Check the apartment
-                            </a>
+                            {unit.comingSoon ? (
+                              <p className="text-sm font-semibold text-gray-500">
+                                Apartment details coming soon
+                              </p>
+                            ) : unit.link ? (
+                              <a
+                                href={unit.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-gold-700 hover:text-gold-800 font-semibold"
+                              >
+                                <LinkIcon size={16} />
+                                {`Check ${unit.name}`}
+                              </a>
+                            ) : null}
                           </article>
                         ))}
                       </div>
